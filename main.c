@@ -12,6 +12,12 @@
   #define RESET "\x1b[0m"
 int controleMenu = 1;
 
+void Error(){
+	printf(VERMELHO"---------- Erro ❗ ---------- \n");
+  printf("❌ Opção inválida! 😐 \nTente novamente! \n");
+	printf("---------------------------- \n" RESET);
+}
+
 struct Paciente{
   char nome[50];//salva o nome do paciente na fila
 	char sobrenome[50];//salvar o sobrenome 
@@ -22,19 +28,46 @@ struct Paciente{
 };
 typedef struct Paciente Paciente;
 
+void Cadastrar(Paciente *p){
+	char nome[40], prioridade;
+	printf("Cadastrar Paciente");
+	printf("Qual o nome do paciente que você deseja cadastrar ?");
+	printf("Digite o nome do paciente:");
+	scanf("%s" , nome);
+	printf("Qual a prioridade do paciente que você deseja cadastrar ?");
+	printf("Digite a prioridade do paciente:");
+	printf("A - Amarelo | V - Verde");
+	scanf("%c" , &prioridade);
+
+	switch(prioridade){
+		case 'A':
+		case 'a':
+  	printf(AMARELO"--------- Prioridade Amarela -------- \n"     RESET);
+		printf(AMARELO"Prioridade definida como Amarela! \n" RESET);
+		printf(AMARELO"-------------------------------------- \n \n \n" RESET);
+		break;;
+		case 'V':
+		case 'v':
+  	printf(VERDE"--------- Prioridade Verde -------- \n"     RESET);
+		printf(VERDE"Prioridade definida como Verde! \n" RESET);
+		printf(VERDE"-------------------------------------- \n \n \n" RESET);
+		break;	}//SWITCH	
+	}
+
 Paciente *aloca(){
  Paciente *p = (Paciente *) malloc(sizeof(Paciente));
  if(!p){
   printf("Sem memoria disponivel!\n");
   exit(1);
  }else{
-  printf("Novo elemento: ");
+  Cadastrar(p);
 	
   scanf("%s", p->nome);//salvando só o nome
   return p;
  }
 }
-
+	
+//VOID CADASTRAR
 int vazia(Paciente *p){
  if(p->prox == NULL){
 	 return 1;
@@ -44,9 +77,7 @@ int vazia(Paciente *p){
 } // Verifica se a fila esta vazia
 
 void inserirFim(Paciente *p , int *tam){
-	//chama o aloca e passa ele como um novo nó
-	//Paciente *p = 
-	aloca();
+	p = aloca();
 	p->prox = NULL;
 
 	if(vazia(p)){
@@ -60,6 +91,29 @@ void inserirFim(Paciente *p , int *tam){
 			tmp->prox = p;
       }
     (*tam)++;
+}
+
+void Remover(){
+  printf("--------- 🚶Remover Paciente da Fila ---------- \n");
+	//remover 
+  // criar um ponteiro inicio - p
+	//p->prox=
+}
+void Pesquisar(Paciente *p, int tam){
+  printf(AZUL"<------------ 🔍Pesquisar pacientes -------> \n" RESET);
+	//pesquisar
+}
+void ExibirFilaCompleta(Paciente *p){
+  printf(AZUL"--------- 📋Exibir Fila Completa ---------- \n" RESET);
+	// exibir fila completa
+}
+void VfilaTipoUrgencia(Paciente *p, int tam){
+  	printf(AZUL"--------- 📋Visualizar Tipo de Urgência ---------- \n" RESET);
+  //Ver Fila por Tipo de Urgência
+}
+void ConsultarFila(int tam){
+  printf(AZUL"--------- 📋Consultar Fila ---------- \n" RESET);
+  //consultar fila
 }
 
 void Menu(Paciente *p){
@@ -80,7 +134,7 @@ void Menu(Paciente *p){
       case 1:inserirFim(p, &tam);break;
       case 2:Remover(); break;
       case 3:Pesquisar(p,tam);break;
-      case 4:VfilaCompleta(p);break;
+      case 4:ExibirFilaCompleta(p);break;
       case 5:VfilaTipoUrgencia(p, tam);break;
       case 6:ConsultarFila(tam); break;
       default:Error();
@@ -91,6 +145,5 @@ void Menu(Paciente *p){
 int main(){
 Paciente *p = (Paciente *) malloc(sizeof(Paciente)); //gerencia o inicio da fila
 int tam;
-inserirFim(p,&tam);
 Menu(p);
 }
