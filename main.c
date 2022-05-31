@@ -88,7 +88,6 @@ void Menu(Paciente *p){
 		}while(controleMenu ==1); 
 	}
 
-
 int main(){
 Paciente *p = (Paciente *) malloc(sizeof(Paciente)); //gerencia o inicio da fila
 int tam;
