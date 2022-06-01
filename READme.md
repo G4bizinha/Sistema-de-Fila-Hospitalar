@@ -2,7 +2,11 @@
 Projeto Dia 14 <br/>
 Projeto desenvolvido durante graduação na cadeira de Estrutura de Dados
 
- - Fluxo lógico da aplicação:
+ # - Prototipação no figma:<br/>
+https://www.figma.com/file/QzVYASiPjfeaxvWbVaxEPy/Untitled?node-id=0%3A1
+
+
+ # - Fluxo lógico da aplicação:
  - sistema cadastra pacientes por níveis de prioridade.
  - mostra pacientes por níveis de prioridade , por posição geral da fila e por posição de acordo com a sua prioridade no sistema.
   - sistema remove da fila  primeiro os pacientes como prioridade alta (prioridade amarela), para posteriormente remover os pacientes com prioridade normal(prioridade verde).
